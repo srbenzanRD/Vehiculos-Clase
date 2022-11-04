@@ -1,0 +1,64 @@
+@page "/VehiculoView"
+
+<PageTitle>Weather forecast</PageTitle>
+
+@using Vehiculo20201061.Data
+@inject WeatherForecastService ForecastService
+
+
+
+<p>Rentamos y compramos vehiculos usados</p>
+<h1>FRANCISCO ANTONIO BELEN MENDOZA</h1>
+<section class="form-register">
+        <h4>Datos Para El Registro Del Vehiculo </h4>
+        <input class="controls" type="text" nombre="Vehiculo" id="Vehiculo"placeholder="Ingrese el vehiculo">
+        <input class="controls" type="text" nombre="Marca" id="Marca"placeholder="Ingrese la marca">
+        <input class="controls" type="text" nombre="Modelo" id="Modelo"placeholder="Ingrese el modelo">
+        <input class="controls" type="text" nombre="Año" id="Año"placeholder="Ingrese el año">
+        <input class="controls" type="text" nombre="Color" id="Color"placeholder="Ingrese el color">
+        
+<a href=""><input  class="botons"  type="submit" value="Guardar"></a>
+<a href="index.html"><input  class="botons"  type="submit" value="Guardar Modificacion"></a>
+   
+
+</section>
+<p>Rentamos y compramos vehiculos usados</p>
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Vehiculos</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
